@@ -9,7 +9,7 @@ const { typeLogicData } = require("./src/utils/typeMock.js");
 
 const port = process.env.PORT || 3001;
 
-conn.sync({ force: true}).then( () => {// force true borra bd c/vez q levanto el back y cierrols
+conn.sync({ force: false}).then( () => {// force true borra bd c/vez q levanto el back y cierrols
   server.listen(port, async () => {
     console.log(`Server listen in ${process.env.NODE_ENV} port ${port}`); // eslint-disable-line no-console
     
