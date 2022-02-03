@@ -12,7 +12,10 @@ router.get('/', async (req, res, next) => {
           // raw: true, formato json
           model: Type,
           attributes: ['type'],
-      }
+      },
+      order: [
+       [ 'createdAt'],
+      ],
   })
     res.status(200).send(getInput);
     } catch (error) { next(error) }
@@ -28,7 +31,7 @@ router.get('/', async (req, res, next) => {
       const inputCreated = await Input.create({
         concept,
         amount,
-        date: new Date()
+        date: new Date().toLocaleString()
       });
        let tipoDb = await Type.findOne({
          where: { id: TypeId }

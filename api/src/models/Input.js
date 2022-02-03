@@ -10,6 +10,9 @@ module.exports = (sequelize) => {
         },
         date:{
             type: DataTypes.DATE,
+            // get() {
+            //     return new Date(this.getDataValue('date'));
+            //   }
         },
        
     })

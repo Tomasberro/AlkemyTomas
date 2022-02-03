@@ -3,14 +3,14 @@ const inputData = [
     {
       concept: "Salario",
       amount: 1000,  
-      date: new Date(),
+      date: new Date().toLocaleString(),
       categoryId: 1,
       typeId: 1,  
     },
     {
         concept: "Supermercado",
         amount: 100,  
-        date: new Date(),
+        date: new Date().toLocaleString(),
         categoryId: 2,
         typeId: 2,  
       },
