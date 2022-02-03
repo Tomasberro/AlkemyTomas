@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function NavBar (){
     return(
             <div class="pos-f-t">
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-dark p-4">
-      <h4 class="text-white">Collapsed content</h4>
+      <Link to="/input">
+      <h4 class="text-white">Ingresar nueva operación</h4>
+      </Link>
       <span class="text-muted">Toggleable via the navbar brand.</span>
     </div>
   </div>
