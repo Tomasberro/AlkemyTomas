@@ -1,9 +1,10 @@
-import { GET_INPUTS } from "./actionsTypes"
+import { GET_INPUTS, GET_TYPES, POST_INPUT } from "./actionsTypes"
 
 var initialState = {
     inputs: [],
     ingresos: [],
    listado: [],
+   types: [],
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -20,6 +21,15 @@ const reducer = (state = initialState, action) => {
                 egresos: gastosAmount,
                 listado: listado10
             }
+        case  GET_TYPES:
+            return {
+                ...state,
+                types: action.payload
+            }
+        case POST_INPUT:
+                return {
+                    ...state
+                }       
 
         default:
             return state
