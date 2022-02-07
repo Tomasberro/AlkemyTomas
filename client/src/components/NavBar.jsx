@@ -9,7 +9,7 @@ export function NavBar (){
       <Link to="/input">
       <h4 class="text-white">Ingresar nueva operación</h4>
       </Link>
-      <span class="text-muted">Toggleable via the navbar brand.</span>
+      <a href="/list" class="text-white">Listado de Ordenes</a>
     </div>
   </div>
   <nav class="navbar navbar-dark bg-dark">

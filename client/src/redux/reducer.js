@@ -1,4 +1,4 @@
-import { GET_INPUTS, GET_TYPES, POST_INPUT } from "./actionsTypes"
+import { GET_INPUTS, GET_TYPES, POST_INPUT, PUT_INPUT } from "./actionsTypes"
 
 var initialState = {
     inputs: [],

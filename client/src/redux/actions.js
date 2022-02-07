@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GET_INPUTS, GET_TYPES, POST_INPUT } from './actionsTypes';
+import { GET_INPUTS, GET_TYPES, POST_INPUT, PUT_INPUT
+, DELETE_INPUT } from './actionsTypes';
 
 export function getInputs (){
     return async function (dispatch){
@@ -30,5 +31,18 @@ export function postInputs (payload){
         type:  POST_INPUT,  
         payload: response.data
     })
+}
+}
+
+export function putInput (id, payload){
+    return async function (dispatch){
+   try{ 
+       let response = await axios.put('/input/' + id, payload);
+//    console.log(response)
+    return dispatch ({
+        type:  PUT_INPUT,  
+        payload: response.data
+    })
+}catch(error){console.log(error)}
 }
 }

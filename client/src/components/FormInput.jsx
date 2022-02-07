@@ -41,7 +41,7 @@ export function FormInput() {
 console.log(input)
     return (
         <div>
-            <NavBar/>
+            {/* <NavBar/> */}
             <div className="form-group">
                 <label htmlFor="concept">Concepto</label>
                 <input

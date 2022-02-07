@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getInputs } from "../redux/actions";
 
 export function Home (){
-    const dispatch = useDispatch();
-    useEffect(() => {
-dispatch(getInputs());
-    }, [dispatch]);
+//     const dispatch = useDispatch();
+//     useEffect(() => {
+// dispatch(getInputs());
+//     }, [dispatch]);
 
     const inputsHome = useSelector(state => state.inputs);
     const ingresosHome= useSelector(state => state.ingresos);
@@ -17,7 +17,7 @@ dispatch(getInputs());
 
     return (
         <div >
-            <NavBar/>
+            {/* <NavBar/> */}
             <div className="container">
                 <div className="row">
                     <div className="col-md-6">
