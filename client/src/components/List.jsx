@@ -21,7 +21,7 @@ dispatch(filterType(e.target.value));
     return(
         <div>
             <div className="container">
-                <div className="row">
+                <div className="row d-flex justify-content-around">
   <select
               className="Select"
               id="types"
