@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_INPUTS, GET_TYPES, POST_INPUT, PUT_INPUT
-, DELETE_INPUT } from './actionsTypes';
+, DELETE_INPUT, FILTER_BY_TYPE } from './actionsTypes';
 
 export function getInputs (){
     return async function (dispatch){
@@ -46,3 +46,24 @@ export function putInput (id, payload){
 }catch(error){console.log(error)}
 }
 }
+export function deleteInput (id){
+    return async function (dispatch){
+    let response = await axios.delete('/input/' + id);
+    return dispatch ({
+        type:  DELETE_INPUT,  
+        payload: response.data
+    })
+}
+}
+export function filterType(payload) {
+    return async (dispatch) => {
+      try {
+        return await dispatch({
+          type: FILTER_BY_TYPE,
+          payload,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }

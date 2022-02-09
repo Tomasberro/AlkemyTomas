@@ -14,7 +14,7 @@ export function Home (){
     const ingresosHome= useSelector(state => state.ingresos);
     const egresosHome = useSelector(state => state.egresos);
     const listadoHome = useSelector(state => state.listado);
-
+console.log(ingresosHome, egresosHome, listadoHome)
     return (
         <div >
             {/* <NavBar/> */}
@@ -33,7 +33,7 @@ export function Home (){
                 <div className="row">
                     <div className="col-md-6">
                         <div className="card">
-                            {listadoHome.map(item => (
+                        { listadoHome && listadoHome.map(item => (
                                 <div className="card-body" key={item.id}>
                                     <h5 className="card-title">{item.concept}</h5>
                                     <p className="card-text">{item.amount}</p>

@@ -1,4 +1,4 @@
-import { GET_INPUTS, GET_TYPES, POST_INPUT, PUT_INPUT } from "./actionsTypes"
+import { FILTER_BY_TYPE, GET_INPUTS, GET_TYPES, POST_INPUT, PUT_INPUT } from "./actionsTypes"
 
 var initialState = {
     inputs: [],
@@ -29,7 +29,17 @@ const reducer = (state = initialState, action) => {
         case POST_INPUT:
                 return {
                     ...state
-                }       
+                }
+        case FILTER_BY_TYPE:
+            let inputByType = state.inputs;
+
+            let filterType = action.payload === "All"? inputByType : 
+            inputByType.filter(item => item.TypeId == action.payload);
+            
+            return {
+                ...state,
+                inputs: filterType
+            }
 
         default:
             return state
