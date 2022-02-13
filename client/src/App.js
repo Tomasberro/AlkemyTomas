@@ -6,6 +6,7 @@ import { List } from './components/List';
 import { NavBar } from './components/NavBar';
 import { useDispatch} from 'react-redux';
 import { getInputs } from './redux/actions';
+import { Login } from './components/Login';
 
 function App() {
   const dispatch = useDispatch();
@@ -16,10 +17,11 @@ dispatch(getInputs());
   
   return (
     <div >
-      <Route path="/"  component={NavBar} />
-     <Route exact path="/" component={Home} /> 
-     <Route path= "/input" component={FormInput} />
-     <Route path= "/list" render={() => {
+      <Route path="/"  component={Login} />
+      <Route path="/home"  component={NavBar} />
+     <Route exact path="/home" component={Home} /> 
+     <Route path= "/home/input" component={FormInput} />
+     <Route path= "/home/list" render={() => {
         return <List  />
         }} />
 
