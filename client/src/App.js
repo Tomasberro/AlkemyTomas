@@ -17,7 +17,7 @@ dispatch(getInputs());
   
   return (
     <div >
-      <Route path="/"  component={Login} />
+      <Route exact path="/"  component={Login} />
       <Route path="/home"  component={NavBar} />
      <Route exact path="/home" component={Home} /> 
      <Route path= "/home/input" component={FormInput} />

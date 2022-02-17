@@ -67,3 +67,28 @@ export function filterType(payload) {
       }
     };
   }
+
+  export const userRegister = async (payload) => {
+    try {
+      console.log("estoy entrando", payload);
+      let { data } = await axios.post("/userRegister", payload);
+      return data;
+    } catch (err) {
+      console.log("rompo en la action de user", err);
+    }
+  };
+  export function userLoginAction (payload){
+  return async function (){
+    try {
+      let { data } = await axios.post("/userLogin", payload);
+      if (data.token) {
+        let token = data.token;
+        localStorage.setItem("token", token);
+      }
+  
+      return data;
+    } catch (error) {
+      console.log("rompo en el login action", error);
+    }
+  }
+}
