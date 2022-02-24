@@ -6,10 +6,10 @@ export function NavBar (){
             <div class="pos-f-t">
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-dark p-4">
-      <Link to="/input">
+      <Link to="/home/input">
       <h4 class="text-white">Ingresar nueva operación</h4>
       </Link>
-      <a href="/list" class="text-white">Listado de Ordenes</a>
+      <a href="/home/list" class="text-white">Listado de Ordenes</a>
     </div>
   </div>
   <nav class="navbar navbar-dark bg-dark">

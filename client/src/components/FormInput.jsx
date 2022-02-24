@@ -2,7 +2,8 @@ import React from "react";
 import { NavBar } from "./NavBar";
 import {useDispatch, useSelector} from "react-redux";
 import { useState, useEffect } from "react";
-import { getTypes, postInputs } from "../redux/actions";
+import { getTypes, postInputs, getToken } from "../redux/actions";
+import jwt_decode from "jwt-decode";
 
 export function FormInput() {
     useEffect(() => {
@@ -11,16 +12,26 @@ export function FormInput() {
 
     const dispatch = useDispatch();
     const types = useSelector(state => state.types);
+  
+    let x;
+    if (localStorage.getItem("token")) {
+      x = getToken();
+    }
+    console.log(x);
+    const decoded = x ? jwt_decode(x) : null;
+    console.log(decoded);
+    let userId = decoded ? decoded.user.id : null;
     const [input, setInput] = useState({
         concept: "",
         amount: 0,
-        TypeId: 1
+        TypeId: 1,
+        UserId: userId
     });
-
     function inputChange(e){
         e.preventDefault();
         setInput({
             ...input,
+            // amount: Number(e.target.value),
             [e.target.name]: e.target.value
         });
     }
@@ -61,7 +72,7 @@ console.log(input)
                     name="amount"
                     placeholder="Cantidad"
                     onChange={inputChange}
-                    value={Number(input.amount)}
+                    value={input.amount}
                 />
             </div> 
             <div className="form-group">
@@ -83,7 +94,7 @@ console.log(input)
             </div>
             <p>
             <button onClick={handleSubmit} class="btn btn-primary my-2" color="white">Registrar Operación</button>
-            <a href="/" class="btn btn-secondary my-2">Volver</a>
+            <a href="/home" class="btn btn-secondary my-2">Volver</a>
           </p>   
         </div>
     );

@@ -1,14 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {TrashIcon, PencilIcon} from '@primer/octicons-react';
-
+import { useEffect } from "react";
 import UpdateList from "./UpdateList";
-import { deleteInput, filterType } from "../redux/actions";
-
+import { deleteInput, filterType, getTypes } from "../redux/actions";
 export function List (){
     const dispatch = useDispatch();
-   
+    useEffect(() => {
+        dispatch(getTypes());
+    }, []);
     const listAll = useSelector(state => state.inputs);
+    const types = useSelector(state => state.types);
     console.log(listAll)
     function handleDelete (id){
         dispatch(deleteInput(id));
@@ -17,6 +19,10 @@ export function List (){
     function handleFilterType (e){
         e.preventDefault()
 dispatch(filterType(e.target.value));
+    }
+    function getId(id){
+        console.log(id, "id")
+        localStorage.setItem("primerId",id);
     }
     return(
         <div>
@@ -28,11 +34,11 @@ dispatch(filterType(e.target.value));
               onChange={(e) => handleFilterType(e)}
             >
               <option value="All">Tipos</option>
-              {listAll &&
-                listAll.map((item) => {
+              {types &&
+                types.map((item) => {
                   return (
-                    <option key={item.id} value={item.TypeId}>
-                      {item.Type.type}
+                    <option key={item.id} value={item.id}>
+                      {item.type}
                     </option>
                   );
                 })}
@@ -43,16 +49,22 @@ dispatch(filterType(e.target.value));
                         <div className="card">
                             <div className="card-header">
                             <h3>Listado de Ordenes</h3>
+                            
                                 {listAll ? listAll.map(item => (
                                     <div className="card-body" key={item.id}>
                                         <h5 className="card-title">{item.concept}</h5>
                                         <p className="card-text">{item.amount}</p>
                                         <p className="card-text">{item.date.substring(0,10)}</p>
                                         <p className="card-text">{item.Type.type}</p>
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                                             <PencilIcon size={16} />
+                                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"
+                                       onClick={() => getId(item.id)}> 
+                                       <PencilIcon size={16}  />
+                                       
                                         </button>
-                                         <UpdateList id={item.id}/> 
+                            
+                                           <UpdateList id={item.id}  />
+                                      
+                                   
                                         <button type="button" class="btn btn-danger" onClick={() => handleDelete(item.id)}> <TrashIcon size={16} />
                                         </button>
                                     </div>

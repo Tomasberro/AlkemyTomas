@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_INPUTS, GET_TYPES, POST_INPUT, PUT_INPUT
-, DELETE_INPUT, FILTER_BY_TYPE } from './actionsTypes';
+, DELETE_INPUT, FILTER_BY_TYPE, GET_INPUTS_BY_USER } from './actionsTypes';
 
 export function getInputs (){
     return async function (dispatch){
@@ -9,6 +9,15 @@ export function getInputs (){
         type:  GET_INPUTS,  
         payload: response.data
     })
+}
+}
+export function getInputsByUser (id){
+  return async function (dispatch){
+  let response = await axios.get('/inputByUser/'+id);
+  return dispatch ({
+      type:  GET_INPUTS_BY_USER,  
+      payload: response.data
+  })
 }
 }
 
@@ -92,3 +101,14 @@ export function filterType(payload) {
     }
   }
 }
+
+export const getToken = () => {
+  let data = {};
+  let token = localStorage.getItem("token");
+  if (!token) {
+    let error = {};
+    error.msg = "No se ha encontrado ningun token";
+    return error;
+  }
+  return (data.tokenInfo = token);
+};

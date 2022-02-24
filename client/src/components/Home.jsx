@@ -2,13 +2,23 @@ import React from "react";
 import { NavBar } from "./NavBar";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getInputs } from "../redux/actions";
+import jwt_decode from 'jwt-decode';
+import { getInputs, getInputsByUser, getToken } from '../redux/actions';
 
 export function Home (){
-//     const dispatch = useDispatch();
-//     useEffect(() => {
-// dispatch(getInputs());
-//     }, [dispatch]);
+    const dispatch = useDispatch();
+    let x;
+      if (localStorage.getItem("token")) {
+        x = getToken();
+      }
+      console.log(x);
+      const decoded = x ? jwt_decode(x) : null;
+      console.log(decoded);
+      let userId = decoded ? decoded.user.id : null;
+  
+    useEffect(() => {
+  dispatch(getInputsByUser(userId));
+    }, [dispatch]);
 
     const inputsHome = useSelector(state => state.inputs);
     const ingresosHome= useSelector(state => state.ingresos);

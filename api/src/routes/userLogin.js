@@ -14,14 +14,14 @@ router.post('/', async (req, res, next) => {
         mail: mail,
       },
     });
+  
      if (!user) {
         res.json({ msg: "Este usuario no coincide con uno existente" });
       }
-    //   console.log(user.userType, "tipo de user");
-    //   console.log(user, "user");
     else {
-        let match = await bcrypt.compare(password, user.password);
+        let match = await bcrypt.compare(password, user.password) || (user.password === password);
         console.log("este es el resultado del match", match);
+        // console.log("este es el password", user.password, password);
         if (match) {
           let token = jwt.sign({ user: user }, authConfing.secret, {
             expiresIn: "999days",

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { userRegister } from "../redux/actions";
 import { useHistory } from "react-router-dom";
 import { userLoginAction } from "../redux/actions";
+
 export function Login (){
     const dispatch = useDispatch();
     const [input, setInput] = useState({
@@ -16,21 +17,21 @@ export function Login (){
         mail: "",
         password: ""
     });
-    const [user, setUser] = useState({
-        validate: "",
-        noValidate: "",
-      });
-      const [succes, setSucces] = useState(false);
+    // const [user, setUser] = useState({
+    //     validate: "",
+    //     noValidate: "",
+    //   });
+    //   const [succes, setSucces] = useState(false);
       const [logeado, setLogeado] = useState({
         msg: "",
         state: false,
       });
       const [userLogin, setUserLogin] = useState();
       const [mail, setMail] = useState({ mail: "" });
-      const [forgot, setForgot] = useState({
-        msg: "",
-        auth: false,
-      });
+      // const [forgot, setForgot] = useState({
+      //   msg: "",
+      //   auth: false,
+      // });
       const [acc, setAcc] = useState(0);
       const history = useHistory();
     
@@ -51,7 +52,7 @@ export function Login (){
    async function handleRegister(e){
         e.preventDefault();
       try{  await dispatch(userRegister(input));
-        console.log("post tomi register")
+        alert("Registro exitoso","success");
       }catch(err){
         console.log(err);
       }
@@ -62,23 +63,24 @@ async function handleLogin(e){
     e.preventDefault();
   const x = await dispatch(userLoginAction(inputLogin));
      console.log("post tomi login", x)
-    setUserLogin(x.id);
-    setMail({ mail: inputLogin.mail });
-    if (x.msg) {
-      setLogeado({
-        state: false,
-        msg: x.msg,
-      });
-    setAcc(acc + 1);
-}
-console.log(acc);
-if (acc >= 3) {
-  return setLogeado({
-    state: false,
-    msg: "a ver probando",
-  });
-}
+//     setUserLogin(x.id);
+//     setMail({ mail: inputLogin.mail });
+//     if (x.msg) {
+//       setLogeado({
+//         state: false,
+//         msg: x.msg,
+//       });
+//     setAcc(acc + 1);
+// }
+// console.log(acc);
+// if (acc >= 3) {
+//   return setLogeado({
+//     state: false,
+//     msg: "a ver probando",
+//   });
+// }
 if (x.auth === true) {
+  alert ("Login exitoso");
   history.push("/home");
 }
 }

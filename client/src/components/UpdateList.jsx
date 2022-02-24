@@ -1,6 +1,7 @@
 import React from "react";
 import { postInputs, putInput } from "../redux/actions";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 export default function UpdateList(id) {
     const dispatch = useDispatch();
@@ -8,6 +9,11 @@ export default function UpdateList(id) {
         concept: "",
         amount: 0,
     });
+ 
+    const idget =Number(localStorage.getItem("primerId"));
+    console.log(idget);
+ 
+  
     function inputChange(e){
         e.preventDefault();
         setInput({
@@ -15,11 +21,11 @@ export default function UpdateList(id) {
             [e.target.name]: e.target.value
         });
     }
-console.log(input, id)
-    async function handleUpdate(id){
-        // console.log(id, input)
+ console.log(input, id)
+    async function handleUpdate(idget){
+         console.log(idget, input)
 
-        await  dispatch(putInput(id.id, input));
+        await  dispatch(putInput((idget), input));
     }
   return (
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -47,7 +53,7 @@ console.log(input, id)
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onClick={()=> handleUpdate(id)}>Send message</button>
+        <button type="button" class="btn btn-primary" onClick={()=> handleUpdate(idget)}>Send message</button>
       </div>
     </div>
   </div>
