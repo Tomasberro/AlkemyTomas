@@ -12,7 +12,7 @@ const categoryRouter = require('./category.js');
 const router = express.Router();
 
 // Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
+
 router.use('/input', inputRouter);
 router.use('/type', typeRouter);
 router.use('/userRegister', userRegisterRouter);

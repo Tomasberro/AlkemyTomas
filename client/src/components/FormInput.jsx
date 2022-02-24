@@ -1,5 +1,4 @@
 import React from "react";
-import { NavBar } from "./NavBar";
 import {useDispatch, useSelector} from "react-redux";
 import { useState, useEffect } from "react";
 import { getTypes, postInputs, getToken, getCategories } from "../redux/actions";
@@ -34,7 +33,6 @@ export function FormInput() {
         e.preventDefault();
         setInput({
             ...input,
-            // amount: Number(e.target.value),
             [e.target.name]: e.target.value
         });
     }
@@ -64,7 +62,6 @@ export function FormInput() {
 console.log(input)
     return (
         <div>
-            {/* <NavBar/> */}
             <div className="form-group">
                 <label htmlFor="concept">Concepto</label>
                 <input

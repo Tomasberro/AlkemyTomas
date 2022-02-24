@@ -1,7 +1,7 @@
 import React from "react";
 import  "./Login.css";
-import {useDispatch, useSelector} from "react-redux";
-import { useState, useEffect } from "react";
+import {useDispatch} from "react-redux";
+import { useState} from "react";
 import { userRegister } from "../redux/actions";
 import { useHistory } from "react-router-dom";
 import { userLoginAction } from "../redux/actions";
@@ -17,22 +17,8 @@ export function Login (){
         mail: "",
         password: ""
     });
-    // const [user, setUser] = useState({
-    //     validate: "",
-    //     noValidate: "",
-    //   });
-    //   const [succes, setSucces] = useState(false);
-      const [logeado, setLogeado] = useState({
-        msg: "",
-        state: false,
-      });
-      const [userLogin, setUserLogin] = useState();
-      const [mail, setMail] = useState({ mail: "" });
-      // const [forgot, setForgot] = useState({
-      //   msg: "",
-      //   auth: false,
-      // });
-      const [acc, setAcc] = useState(0);
+   
+    
       const history = useHistory();
     
       function inputChange(e){
@@ -57,28 +43,13 @@ export function Login (){
         console.log(err);
       }
     }
-// console.log(input)
+
 console.log(inputLogin)
 async function handleLogin(e){
     e.preventDefault();
   const x = await dispatch(userLoginAction(inputLogin));
      console.log("post tomi login", x)
-//     setUserLogin(x.id);
-//     setMail({ mail: inputLogin.mail });
-//     if (x.msg) {
-//       setLogeado({
-//         state: false,
-//         msg: x.msg,
-//       });
-//     setAcc(acc + 1);
-// }
-// console.log(acc);
-// if (acc >= 3) {
-//   return setLogeado({
-//     state: false,
-//     msg: "a ver probando",
-//   });
-// }
+
 if (x.auth === true) {
   alert ("Login exitoso");
   history.push("/home");
@@ -128,25 +99,3 @@ if (x.auth === true) {
     )
 }
 
-//    {
-
-//             <div class="form-signin">
-           
-    
-      
-//             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-//             <label for="inputEmail" class="sr-only">Email address</label>
-//             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""/>
-//             <label for="inputPassword" class="sr-only">Password</label>
-//             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""/>
-//             <div class="checkbox mb-3">
-//               <label>
-//                 <input type="checkbox" value="remember-me" /> Remember me
-//               </label>
-//             </div>
-//             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-//             <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
-         
-      
-      
-//               </div>

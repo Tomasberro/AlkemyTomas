@@ -32,8 +32,8 @@ const sequelize = process.env.NODE_ENV === "production"
     },
   })
 : new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  logging: false, 
+  native: false, 
 });
 
 
@@ -47,17 +47,16 @@ userModel(sequelize);
 User.hasMany(Input);
 Input.belongsTo(User);
 
- Input.belongsTo(Type);//trough tabla intermedia
-  Type.hasMany(Input);// creo dos foreign key category page id
+ Input.belongsTo(Type);
+  Type.hasMany(Input);
+  
+  Input.belongsTo(Category);
+  Category.hasMany(Input);
 
-     Input.belongsTo(Category);//trough tabla intermedia
-     Category.hasMany(Input);// creo dos foreign key category page id
 
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
 
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  ...sequelize.models, 
+  conn: sequelize,     
 };

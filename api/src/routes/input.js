@@ -6,11 +6,11 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
    try{
-     console.log(Type)
+    
     const getInput= await Input.findAll({
       include:[
          {
-          // raw: true, formato json
+        
           model: Type,
           attributes: ['type'],
       },
@@ -51,7 +51,7 @@ router.get('/', async (req, res, next) => {
         where: { id: CategoryId }
       })
 
-       console.log(inputCreated)
+      
      inputCreated.setType(tipoDb);
   inputCreated.setUser(userId);
   inputCreated.setCategory(categoryDb);

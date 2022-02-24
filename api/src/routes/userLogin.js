@@ -21,7 +21,7 @@ router.post('/', async (req, res, next) => {
     else {
         let match = await bcrypt.compare(password, user.password) || (user.password === password);
         console.log("este es el resultado del match", match);
-        // console.log("este es el password", user.password, password);
+       
         if (match) {
           let token = jwt.sign({ user: user }, authConfing.secret, {
             expiresIn: "999days",

@@ -35,6 +35,7 @@ dispatch(filterCategory(e.target.value));
         <div>
             <div className="container">
                 <div className="row d-flex justify-content-around">
+                <div >
             <select
               className="Select"
               id="types"
@@ -51,7 +52,7 @@ dispatch(filterCategory(e.target.value));
                 })}
             </select>
                </div>
-               <div className="row d-flex justify-content-around">
+               <div >
             <select
               className="Select"
               id="types"
@@ -67,6 +68,7 @@ dispatch(filterCategory(e.target.value));
                   );
                 })}
             </select>
+            </div>
                </div>
                 <div className="row d-inline">
                     <div className="col-md-6">

@@ -6,7 +6,7 @@ import { List } from './components/List';
 import { NavBar } from './components/NavBar';
 import { useDispatch } from 'react-redux';
 import { Login } from './components/Login';
-import { getInputs, getInputsByUser, getToken } from './redux/actions';
+import {  getInputsByUser, getToken } from './redux/actions';
 import jwt_decode from 'jwt-decode';
 
 function App() {

@@ -1,7 +1,7 @@
 import React from "react";
-import { postInputs, putInput } from "../redux/actions";
+import {  putInput } from "../redux/actions";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+
 
 export default function UpdateList(id) {
     const dispatch = useDispatch();
