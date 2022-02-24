@@ -7,6 +7,7 @@ const express = require('express');
  const userRegisterRouter = require('./userRegister.js');
 const userLoginRouter = require('./userLogin.js');
 const inputByUserRouter = require('./inputByUser.js');
+const categoryRouter = require('./category.js');
 
 const router = express.Router();
 
@@ -17,6 +18,7 @@ router.use('/type', typeRouter);
 router.use('/userRegister', userRegisterRouter);
 router.use('/userLogin', userLoginRouter);
 router.use('/inputByUser', inputByUserRouter);
+router.use('/category', categoryRouter);
 
 
 module.exports = router;

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { GET_INPUTS, GET_TYPES, POST_INPUT, PUT_INPUT
-, DELETE_INPUT, FILTER_BY_TYPE, GET_INPUTS_BY_USER } from './actionsTypes';
+, DELETE_INPUT, FILTER_BY_TYPE, GET_INPUTS_BY_USER, GET_CATEGORIES, FILTER_BY_CATEGORY
+ } from './actionsTypes';
 
 export function getInputs (){
     return async function (dispatch){
@@ -112,3 +113,26 @@ export const getToken = () => {
   }
   return (data.tokenInfo = token);
 };
+
+export function getCategories (){
+  return async function (dispatch){
+try{  let response = await axios.get('/category', {});
+  return dispatch ({
+      type:  GET_CATEGORIES,  
+      payload: response.data
+  })
+}catch(error){console.log(error)}
+}
+}
+export function filterCategory(payload) {
+  return async (dispatch) => {
+    try {
+      return await dispatch({
+        type: FILTER_BY_CATEGORY,
+        payload,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

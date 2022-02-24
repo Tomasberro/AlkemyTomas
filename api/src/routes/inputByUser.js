@@ -1,7 +1,7 @@
 'use strict';
 const { Router } = require('express');
 const { Input} = require('../db.js');
-const { Type, User} = require('../db.js');
+const { Type, User, Category} = require('../db.js');
 const router = Router();
 
 router.get('/:userId', async (req, res, next) => {
@@ -11,10 +11,16 @@ router.get('/:userId', async (req, res, next) => {
         where: {
           UserId: userId
         },
-        include: {
+        include:
+        [ {
           model: Type,
-          attributes: ['type'],
+          attributes: ['type']
       },
+      {
+        model: Category,
+        attributes: ['name'],
+    },
+  ],
       order: [
        [ 'createdAt'],
       ],

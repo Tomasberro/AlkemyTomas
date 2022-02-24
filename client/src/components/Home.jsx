@@ -24,6 +24,7 @@ export function Home (){
     const ingresosHome= useSelector(state => state.ingresos);
     const egresosHome = useSelector(state => state.egresos);
     const listadoHome = useSelector(state => state.listado);
+  
 console.log(ingresosHome, egresosHome, listadoHome)
     return (
         <div >
@@ -48,7 +49,8 @@ console.log(ingresosHome, egresosHome, listadoHome)
                                     <h5 className="card-title">{item.concept}</h5>
                                     <p className="card-text">{item.amount}</p>
                                     <p className="card-text">{item.date.substring(0,10)}</p>
-                                    <p className="card-text">{item.Type.type}</p>
+                                    <p className="card-text">Tipo: {item.Type.type}</p>
+                                    <p className="card-text">Categoría: {item.Category.name}</p>
                                 </div>
                             ))}
                         </div>

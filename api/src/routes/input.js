@@ -1,18 +1,24 @@
 'use strict';
 const { Router } = require('express');
 const { Input} = require('../db.js');
-const { Type, User} = require('../db.js');
+const { Type, User, Category} = require('../db.js');
 const router = Router();
 
 router.get('/', async (req, res, next) => {
    try{
      console.log(Type)
     const getInput= await Input.findAll({
-      include: {
+      include:[
+         {
           // raw: true, formato json
           model: Type,
           attributes: ['type'],
       },
+      {
+        model:Category,
+        attributes: ['name'],
+      }
+    ],
       order: [
        [ 'createdAt'],
       ],
@@ -26,6 +32,7 @@ router.get('/', async (req, res, next) => {
       concept,
       amount,
       TypeId,
+      CategoryId,
       UserId,
     } = req.body;
     try {
@@ -40,10 +47,14 @@ router.get('/', async (req, res, next) => {
        let userId = await User.findOne({
           where: { id: UserId }
        })
+       let categoryDb = await Category.findOne({
+        where: { id: CategoryId }
+      })
 
        console.log(inputCreated)
      inputCreated.setType(tipoDb);
   inputCreated.setUser(userId);
+  inputCreated.setCategory(categoryDb);
       res.send('soy el post de input nuevo');
     }
     catch (error) { next(error) }

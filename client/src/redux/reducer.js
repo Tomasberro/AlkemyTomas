@@ -1,4 +1,4 @@
-import { FILTER_BY_TYPE, GET_INPUTS, GET_INPUTS_BY_USER, GET_TYPES, POST_INPUT, 
+import { FILTER_BY_CATEGORY, FILTER_BY_TYPE, GET_CATEGORIES, GET_INPUTS, GET_INPUTS_BY_USER, GET_TYPES, POST_INPUT, 
     PUT_INPUT } from "./actionsTypes"
 
 var initialState = {
@@ -6,6 +6,7 @@ var initialState = {
     ingresos: [],
    listado: [],
    types: [],
+   categories: [],
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -54,7 +55,21 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 inputs: filterType
             }
-
+        case GET_CATEGORIES:
+            return{
+                ...state,
+                categories: action.payload
+            }
+            case FILTER_BY_CATEGORY:
+                let inputByCategory = state.inputs;
+    
+                let filterCategory = action.payload === "All"? inputByCategory  : 
+                inputByCategory.filter(item => item.CategoryId == action.payload);
+                
+                return {
+                    ...state,
+                    inputs: filterCategory
+                }
         default:
             return state
     }

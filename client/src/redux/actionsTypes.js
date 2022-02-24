@@ -5,3 +5,5 @@ export const POST_INPUT = 'POST_INPUT';
 export const PUT_INPUT = 'PUT_INPUT';
 export const DELETE_INPUT = 'DELETE_INPUT';
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY';

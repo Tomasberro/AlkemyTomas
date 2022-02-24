@@ -3,14 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 import {TrashIcon, PencilIcon} from '@primer/octicons-react';
 import { useEffect } from "react";
 import UpdateList from "./UpdateList";
-import { deleteInput, filterType, getTypes } from "../redux/actions";
+import { deleteInput, filterType, getTypes, getCategories, filterCategory
+ } from "../redux/actions";
 export function List (){
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getTypes());
+        dispatch(getCategories());
     }, []);
     const listAll = useSelector(state => state.inputs);
     const types = useSelector(state => state.types);
+    const categories = useSelector(state => state.categories);
     console.log(listAll)
     function handleDelete (id){
         dispatch(deleteInput(id));
@@ -20,6 +23,10 @@ export function List (){
         e.preventDefault()
 dispatch(filterType(e.target.value));
     }
+    function handleFilterCategory (e){
+        e.preventDefault()
+dispatch(filterCategory(e.target.value));
+    }
     function getId(id){
         console.log(id, "id")
         localStorage.setItem("primerId",id);
@@ -28,7 +35,7 @@ dispatch(filterType(e.target.value));
         <div>
             <div className="container">
                 <div className="row d-flex justify-content-around">
-  <select
+            <select
               className="Select"
               id="types"
               onChange={(e) => handleFilterType(e)}
@@ -39,6 +46,23 @@ dispatch(filterType(e.target.value));
                   return (
                     <option key={item.id} value={item.id}>
                       {item.type}
+                    </option>
+                  );
+                })}
+            </select>
+               </div>
+               <div className="row d-flex justify-content-around">
+            <select
+              className="Select"
+              id="types"
+              onChange={(e) => handleFilterCategory(e)}
+            >
+              <option value="All">Categorías</option>
+              {categories &&
+                categories.map((item) => {
+                  return (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
                     </option>
                   );
                 })}
@@ -55,7 +79,8 @@ dispatch(filterType(e.target.value));
                                         <h5 className="card-title">{item.concept}</h5>
                                         <p className="card-text">{item.amount}</p>
                                         <p className="card-text">{item.date.substring(0,10)}</p>
-                                        <p className="card-text">{item.Type.type}</p>
+                                        <p className="card-text">Tipo: {item.Type.type}</p>
+                                        <p className="card-text">Categoría: {item.Category.name}</p>
                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"
                                        onClick={() => getId(item.id)}> 
                                        <PencilIcon size={16}  />
