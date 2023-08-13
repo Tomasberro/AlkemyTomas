@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { Login } from './components/Login';
 import {  getInputsByUser, getToken } from './redux/actions';
 import jwt_decode from 'jwt-decode';
+import Carry from './components/Carry';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function App() {
      <Route path= "/home/list" render={() => {
         return <List  />
         }} />
-
+      <Route path="/home/carry" component={Carry} />
     </div>
   );
 }

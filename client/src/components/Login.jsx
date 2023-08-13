@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import  "./Login.css";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useState} from "react";
-import { userRegister } from "../redux/actions";
+import { getTokenAuth, userRegister } from "../redux/actions";
 import { useHistory } from "react-router-dom";
 import { userLoginAction } from "../redux/actions";
+import Accept from "./Accept";
 
 export function Login (){
     const dispatch = useDispatch();
+    const tokenAuthCatch = useSelector(state => state.tokenAuth);
     const [input, setInput] = useState({
         name: "",
         mail: "",
@@ -17,6 +19,9 @@ export function Login (){
         mail: "",
         password: ""
     });
+//    useEffect(() => {
+//      dispatch(getTokenAuth())
+//     }, [dispatch])
    
     
       const history = useHistory();
@@ -37,14 +42,16 @@ export function Login (){
     }
    async function handleRegister(e){
         e.preventDefault();
-      try{  await dispatch(userRegister(input));
+      try{  
+        // await dispatch(userRegister(input));
+        let data = await dispatch(getTokenAuth())
         alert("Registro exitoso","success");
       }catch(err){
         console.log(err);
       }
     }
 
-console.log(inputLogin)
+console.log(tokenAuthCatch, "tokenAuthCatch")
 async function handleLogin(e){
     e.preventDefault();
   const x = await dispatch(userLoginAction(inputLogin));
@@ -92,7 +99,7 @@ if (x.auth === true) {
                 <button class="btn btn-dark btn-block" onClick={handleRegister}>Signup</button> 
                 </div>
             </div> 
-     
+             < Accept formToken={'LNWwQUrmZJ1KbDJwLO4U4KP2bnSQgURE8AWLS1kS8zHrJ4G+fU4gexLRUPYLFJ80yxMDQaaw3/U5m48DnQMNbZ3pykXoxjSWPva0hC4YI/Y1RjAB/hfJlovoprCyfaqrWiTxvj6+mHqcyfmBAdLslb0N3JSvSxLhIm8kApcNoNqTQKV6p1UiMI59AUSWbvR2Kdw25Okavmkc85AwB8P5S0MBneNE1Ury3a5KxzWKqDD2nqANvY7aoik0nt7x82RKvco/fSwb3sDQQ+C60z+gxEzqb0fWyIwS7wE19i5I21gVAiPzEO4Yfj3l5VBgXVcAxNW+PVfooRqZEOm66mGyaLFJKeXDxaCLUOgYUx8F7PTqyL8ZIoiporSEE/lMQoNZyDRCSSfP8wDZ2Pjj5jgNEjK6/F2pfhhzotkuIfaX1nZQYrrb89pDuviQIdoszMtEzIz6zJjRBfpBX0jSzYqrkZWWU7vDjemoaO7G5OPqTWLIoYP0rakdhb3K6o+LF6a1fr2qwY0xPU2585BIXBq7xCgR97zxBC8tb5qL2ge0SSt4n9IV4N7bbBPLoT92UprA3NU5lUrazxAiOIRqlSz97bqkgF+eC8QpHzMzJk/4OWJm+dPPtddwxcvO9zAGtBs3AsgEIC9nrxM2yHaLkBp+GkBOjmOEj9QM0Efimd2lqycIySFs0Jumo9Gsb2L7ro5mpT7WEcOt4qIYa7rV1sNBEUiH+yez0nHnFqKgh/zDnUNzjBYmkXc5QD0Zu9hF8U4uYezQDw70oibvgOx4kYzdF9ILtZVbDWTrDpvm9b4zvGXgpMLNe3oBuCywZ64cWjyMQI1UQUps8Qcg5pKZmrKbWRm7yli3xvN0GmYcACNBcflpWGpLD33QF1SpRtXAKmYt.2qC7LM9MskZ'} />
         </div>
         
            

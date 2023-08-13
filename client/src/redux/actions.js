@@ -113,6 +113,15 @@ export const getToken = () => {
   }
   return (data.tokenInfo = token);
 };
+export const getTokenAuth = () => {
+  try {
+    return async function () {
+    let {data} = axios.post("/authorize-net/getToken");
+    return data;
+  }} catch (error) {
+    console.log(error);
+  }
+};
 
 export function getCategories (){
   return async function (dispatch){

@@ -1,4 +1,4 @@
-import { FILTER_BY_CATEGORY, FILTER_BY_TYPE, GET_CATEGORIES, GET_INPUTS, GET_INPUTS_BY_USER, GET_TYPES, POST_INPUT, 
+import { FILTER_BY_CATEGORY, FILTER_BY_TYPE, GET_CATEGORIES, GET_INPUTS, GET_INPUTS_BY_USER, GET_TOKEN_AUTH, GET_TYPES, POST_INPUT, 
     PUT_INPUT } from "./actionsTypes"
 
 var initialState = {
@@ -7,9 +7,15 @@ var initialState = {
    listado: [],
    types: [],
    categories: [],
+   tokenAuth: '',
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case GET_TOKEN_AUTH:
+            return {
+                ...state,
+                tokenAuth: action.payload
+            }
         case GET_INPUTS:
             let ingresoFilter= action.payload.filter(item => item.TypeId === 1);
             let ingresoAmount= ingresoFilter.reduce((total, item) => total + item.amount, 0);

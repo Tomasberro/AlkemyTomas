@@ -7,3 +7,4 @@ export const DELETE_INPUT = 'DELETE_INPUT';
 export const FILTER_BY_TYPE = 'FILTER_BY_TYPE';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY';
+export const GET_TOKEN_AUTH = 'GET_TOKEN_AUTH';
